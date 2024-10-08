@@ -5,11 +5,12 @@ def main():
         print(file_contents)
 
         print("--------------------------------------------------------")
+        print(f"------  Begin report of {book}  ------")
 
-        # counting the words and chars in the file, then printing char count and word count
+        # counting the words and chars in the file, then printing word count
         word_count = len(file_contents.split())
-        print(f"{word_count} words")
-        print(f"{len(file_contents)} characters")
+        print(f"{word_count} words found in the document")
+        print()
         char_count(book)
 
 def char_count(book):
@@ -49,6 +50,12 @@ def char_count(book):
             if char in char_dict:
                 char_dict[char] += 1
 
-        print(char_dict)
+        # ordering chars in the dictionary by the number of counts descending
+        sorted_chars = sorted(char_dict.items(), key=lambda x: x[1], reverse=True)
+
+        # printing out the results in a loop
+        for char, count in sorted_chars:
+            print(f"The '{char}' character was found {count} times")
+        print("-------------------- End report ------------------------")
 
 main()
